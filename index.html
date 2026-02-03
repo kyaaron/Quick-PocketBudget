@@ -3,25 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Budget App</title>
+    <title>Quick PocketBudget</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body class="flex flex-col justify-items-center mx-auto w-2/4 max-w-xl">
-    <h1 class="text-4xl text-center">My Budget App</h1>
-    <section class="flex flex-col w-auto mt-4">
-        <select class="mb-4 h-10 border-2 rounded-md pl-1">
-            <option value="">--Select Budget Category--</option>
-            <option value="fixed">Fixed</option>
-            <option value="food">Food</option>
-            <option value="groceries">Groceries</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="shopping">Shopping</option>
-            <option value="donations">Donations</option>
-            <option value="other">Other</option>
-        </select>
-        <input class="border-2 rounded-md h-10 pl-2" type="text" placeholder="Add amount" />
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 mx-auto w-32">Add Item</button>
-    </section>
-    
+<body class="bg-[#F1F1F2]">
+    <header class="flex justify-between p-4">
+        <h1 class="text-lg">Quick <span class="font-bold">PocketBudget</span></h1>
+        <p class="text-lg">Feb 2, 2026</p>
+    </header>
+    <main class="mt-2">
+
+        <!-- User Input Section -->
+        <section id="user-input-section" class="mb-6 bg-[#FEFEFE] mx-auto px-6 pb-6 pt-4 min-w-sm w-1/4 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+            <h2 class="text-center text-2xl">Quick Add</h2>
+            <div class="flex flex-col lg:flex-row">
+                <label class="relative inline-flex items-center cursor-pointer my-2">
+                    <input type="checkbox" class="sr-only peer">
+                    <div class="w-11 h-6 bg-gray-200 rounded-full peer 
+                                peer-checked:after:translate-x-full peer-checked:after:border-white 
+                                after:content-[''] after:absolute after:top-[2px] after:left-[2px] 
+                                after:bg-white after:border-gray-300 after:border after:rounded-full 
+                                after:h-5 after:w-5 after:transition-all peer-checked:bg-[#529B7F]">
+                    </div>
+                    <span class="ml-3 text-sm font-medium text-gray-900 font-bold">Income?</span>
+                </label>
+                <label class="my-2">
+                    <span class="ml-3 text-sm font-medium text-gray-900 font-bold">Category</span><br>
+                    <select class="shadow-[0_0_10px_rgba(0,0,0,0.2)] p-2 rounded-lg">
+                        <option>--select--</option>
+                        <option>Mortgage/Rent</option>
+                        <option>Groceries</option>
+                        <option>Food</option>
+                    </select>
+                </label>
+                <label class="my-2">
+                    <span class="ml-3 text-sm font-medium text-gray-900 font-bold">Note</span><br>
+                    <input class="shadow-[0_0_10px_rgba(0,0,0,0.2)] rounded-lg p-2 w-full" type="text" placeholder="Input custom note..." />
+                </label>
+            </div>
+            <div></div>
+        </section>
+
+        <!-- Budget Numbers section -->
+        <div id="budget-numbers-section" class="flex flex-col w-full items-center">
+            <section class="bg-[#FEFEFE] h-36 w-1/4 min-w-sm mb-6 pt-6 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+                <h2 class="text-center text-2xl">Total Balance</h2>
+                <p class="text-center text-4xl font-bold pt-4">$2939.50</p>
+            </section>
+            <section class="bg-[#FEFEFE] h-36 w-1/4 min-w-sm mb-6 pt-6 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+                <h2 class="text-center text-2xl">Monthly income</h2>
+                <p class="text-center text-4xl pt-4">$3000.00</p>
+            </section>
+            <section class="bg-[#FEFEFE] h-36 w-1/4 min-w-sm mb-6 pt-6 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+                <h2 class="text-center text-2xl">Monthly expenses</h2>
+                <p class="text-center text-4xl pt-4">-$60.50</p>
+            </section>
+        </div>
+
+        <!-- Clear button -->
+        <div class="flex h-auto min-w-sm w-1/4 mx-auto mb-6">
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold w-full py-2 px-4 rounded-xl">Clear Budget Data</button>
+        </div>
+
+        <!-- Budget table section -->
+        <section id="budget-items-table-section" class="bg-[#FEFEFE] px-3 pb-6 pt-4 mx-auto mb-6 h-auto min-w-sm w-1/4 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+            <h2 class="text-center text-2xl mt-2 mb-6">Itemized budget items</h2>
+            <table class="table-fixed">
+                <thead>
+                    <tr>
+                        <th scope="col" class="w-2/4 text-left">Itemized item</th>
+                        <th scope="col" class="w-1/4 text-left"></th>
+                        <th scope="col" class="w-1/4 text-left"></th>
+                        <th scope="col" class="w-1/4 text-right">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10/20/2025</td>
+                        <td>Income</td>
+                        <td>Salary</td>
+                        <td class="text-right">$3000.00</td>
+                    </tr>
+                    <tr>
+                        <td>10/22/2025</td>
+                        <td>Expense</td>
+                        <td>Food</td>
+                        <td class="text-right">$230.00</td>
+                    </tr>
+                    <tr>
+                        <td>10/20/2025</td>
+                        <td>Expense</td>
+                        <td>Rent</td>
+                        <td class="text-right">$1600.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
 </body>
 </html>
