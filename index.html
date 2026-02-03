@@ -14,7 +14,7 @@
     <main class="mt-2">
 
         <!-- User Input Section -->
-        <section id="user-input-section" class="mb-6 bg-[#FEFEFE] mx-auto px-6 pb-6 pt-4 min-w-xs w-1/4 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+        <section id="user-input-section" class="mb-6 bg-[#FEFEFE] mx-auto px-6 pb-6 pt-4 min-w-sm w-1/4 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
             <h2 class="text-center text-2xl">Quick Add</h2>
             <div class="flex flex-col lg:flex-row">
                 <label class="relative inline-flex items-center cursor-pointer my-2">
@@ -46,22 +46,54 @@
 
         <!-- Budget Numbers section -->
         <div id="budget-numbers-section" class="flex flex-col w-full items-center">
-            <section class="bg-[#FEFEFE] h-36 w-1/4 min-w-xs mb-6 pt-6 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+            <section class="bg-[#FEFEFE] h-36 w-1/4 min-w-sm mb-6 pt-6 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
                 <h2 class="text-center text-2xl">Total Balance</h2>
                 <p class="text-center text-4xl font-bold pt-4">$2939.50</p>
             </section>
-            <section class="bg-[#FEFEFE] h-36 w-1/4 min-w-xs mb-6 pt-6 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+            <section class="bg-[#FEFEFE] h-36 w-1/4 min-w-sm mb-6 pt-6 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
                 <h2 class="text-center text-2xl">Monthly income</h2>
                 <p class="text-center text-4xl pt-4">$3000.00</p>
             </section>
-            <section class="bg-[#FEFEFE] h-36 w-1/4 min-w-xs mb-6 pt-6 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+            <section class="bg-[#FEFEFE] h-36 w-1/4 min-w-sm mb-6 pt-6 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
                 <h2 class="text-center text-2xl">Monthly expenses</h2>
                 <p class="text-center text-4xl pt-4">-$60.50</p>
             </section>
         </div>
 
         <!-- Budget table section -->
-        <section id="budget-items-table-section"></section>
+        <section id="budget-items-table-section" class="bg-[#FEFEFE] px-3 pb-6 pt-4 mx-auto mb-6 h-auto min-w-sm w-1/4 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+            <h2 class="text-center text-2xl">Itemized budget items</h2>
+            <table class="table-fixed">
+                <thead>
+                    <tr>
+                        <th scope="col" class="w-2/4 text-left">Itemized item</th>
+                        <th scope="col" class="w-1/4 text-left"></th>
+                        <th scope="col" class="w-1/4 text-left"></th>
+                        <th scope="col" class="w-1/4 text-right">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10/20/2025</td>
+                        <td>Income</td>
+                        <td>Salary</td>
+                        <td class="text-right">$3000.00</td>
+                    </tr>
+                    <tr>
+                        <td>10/22/2025</td>
+                        <td>Expense</td>
+                        <td>Food</td>
+                        <td class="text-right">$230.00</td>
+                    </tr>
+                    <tr>
+                        <td>10/20/2025</td>
+                        <td>Expense</td>
+                        <td>Rent</td>
+                        <td class="text-right">$1600.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
     </main>
 </body>
