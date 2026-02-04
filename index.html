@@ -19,7 +19,7 @@
             <h2 class="text-center text-2xl">Quick Add</h2>
             <div class="flex flex-col lg:flex-row lg:justify-between">
                 <label class="inline-flex items-center cursor-pointer my-2 lg:w-1/2 lg:mr-4">
-                    <input type="checkbox" class="sr-only peer">
+                    <input id="income-budget-toggle" type="checkbox" class="sr-only peer">
                     <div class="relative w-11 h-6 bg-gray-200 rounded-full peer 
                                 peer-checked:after:translate-x-full peer-checked:after:border-white 
                                 after:content-[''] after:absolute after:top-[2px] after:left-[2px] 
@@ -30,7 +30,7 @@
                 </label>
                 <label class="my-2 lg:w-1/2 lg:ml-4">
                     <span class="ml-3 text-sm font-medium text-gray-900 font-bold">Category</span><br>
-                    <select class="shadow-[0_0_10px_rgba(0,0,0,0.2)] p-2 rounded-lg">
+                    <select id="budget-type-selector" class="shadow-[0_0_10px_rgba(0,0,0,0.2)] p-2 rounded-lg">
                         <option>--select--</option>
                         <option>Mortgage/Rent</option>
                         <option>Groceries</option>
@@ -41,16 +41,16 @@
             <div class="lg:flex">
                 <label class="my-2 w-1/2 mr-4">
                     <span class="ml-3 text-sm font-medium text-gray-900 font-bold">Note</span><br>
-                    <input class="shadow-[0_0_10px_rgba(0,0,0,0.2)] rounded-lg p-2 lg:mr-4 w-full" type="text" placeholder="Input amount here..." />
+                    <input id="note-input" class="shadow-[0_0_10px_rgba(0,0,0,0.2)] rounded-lg p-2 lg:mr-4 w-full" type="text" placeholder="Input amount here..." />
                 </label>
                 <label class="my-2 w-1/2 ml-4">
                     <span class="ml-3 text-sm font-medium text-gray-900 font-bold">Amount</span><br>
-                    <input class="shadow-[0_0_10px_rgba(0,0,0,0.2)] rounded-lg p-2 lg:mr-4 w-full" type="text" placeholder="Input amount here..." />
+                    <input id="amount-input" class="shadow-[0_0_10px_rgba(0,0,0,0.2)] rounded-lg p-2 lg:mr-4 w-full" type="text" placeholder="Input amount here..." />
                 </label>
             </div>
             <div class="lg:flex">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl w-1/2 mt-6 lg:my-8 lg:mr-4">Add Item</button>
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl w-1/2 mt-6 lg:my-8 lg:ml-4">Clear Budget Data</button>
+                <button id="add-item-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl w-1/2 mt-6 lg:my-8 lg:mr-4">Add Item</button>
+                <button id="delete-data-button" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl w-1/2 mt-6 lg:my-8 lg:ml-4">Clear Data</button>
             </div>
         </section>
 
@@ -58,15 +58,15 @@
         <div id="budget-numbers-section" class="flex flex-col lg:flex-row w-full lg:w-3/4 items-center lg:justify-around lg:mx-auto">
             <section class="bg-[#FEFEFE] h-36 w-3/4 min-w-sm mb-6 pt-6 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)] lg:min-w-0 lg:mr-3">
                 <h2 class="text-center text-2xl">Total Balance</h2>
-                <p class="text-center text-4xl font-bold pt-4">$2939.50</p>
+                <p id="total-budget" class="text-center text-4xl font-bold pt-4">$0.00</p>
             </section>
             <section class="bg-[#FEFEFE] h-36 w-3/4 min-w-sm mb-6 pt-6 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)] lg:min-w-0 lg:mx-3">
                 <h2 class="text-center text-2xl">Monthly income</h2>
-                <p class="text-center text-4xl pt-4"><span class="text-green-600">↑ </span>$3000.00</p>
+                <p id="income-box" class="text-center text-4xl pt-4"><span class="text-green-600">↑ </span>$0.00</p>
             </section>
             <section class="bg-[#FEFEFE] h-36 w-3/4 min-w-sm mb-6 pt-6 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)] lg:min-w-0 lg:ml-3">
                 <h2 class="text-center text-2xl">Monthly expenses</h2>
-                <p class="text-center text-4xl pt-4"><span class="text-red-600">↓ </span>-$60.50</p>
+                <p id="expenses-box" class="text-center text-4xl pt-4"><span class="text-red-600">↓ </span>$0.00</p>
             </section>
         </div>
 
@@ -108,5 +108,6 @@
     <footer class="my-4">
         <p class="text-sm text-center"><a class="text-blue-600" target="_blank" href="https://icons8.com/icon/12985/bank">Bank</a> icon by <a class="text-blue-600" target="_blank" href="https://icons8.com">Icons8</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;Source code <a class="text-blue-600" href="https://github.com/kyaaron/OOP-budget-tracker" target="_blank">available here on Github</a></p>
     </footer>
+    <script type="module" src="./utils/functions.js"></script>
 </body>
 </html>
