@@ -14,9 +14,9 @@
     <main class="mt-2">
 
         <!-- User Input Section -->
-        <section id="user-input-section" class="mb-6 bg-[#FEFEFE] mx-auto px-6 pb-6 pt-4 min-w-sm w-3/4 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
-            <h2 class="text-center text-4xl">Quick Add</h2>
-            <div class="flex flex-col lg:flex-row">
+        <section id="user-input-section" class="mb-6 bg-[#FEFEFE] mx-auto px-6 pb-6 pt-6 min-w-sm w-3/4 rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.1)]">
+            <h2 class="text-center text-2xl">Quick Add</h2>
+            <div class="flex flex-col lg:flex-row lg:justify-between">
                 <label class="inline-flex items-center cursor-pointer my-2 lg:w-1/2 lg:mr-4">
                     <input type="checkbox" class="sr-only peer">
                     <div class="relative w-11 h-6 bg-gray-200 rounded-full peer 
@@ -27,7 +27,7 @@
                     </div>
                     <span class="ml-3 text-sm font-medium text-gray-900 font-bold">Income?</span>
                 </label>
-                <label class="my-2 lg:w-1/2 lg:ml-2">
+                <label class="my-2 lg:w-1/2 lg:ml-4">
                     <span class="ml-3 text-sm font-medium text-gray-900 font-bold">Category</span><br>
                     <select class="shadow-[0_0_10px_rgba(0,0,0,0.2)] p-2 rounded-lg">
                         <option>--select--</option>
@@ -38,11 +38,18 @@
                 </label>
             </div>
             <div class="lg:flex">
-                <label class="my-2 w-1/2">
+                <label class="my-2 w-1/2 mr-4">
                     <span class="ml-3 text-sm font-medium text-gray-900 font-bold">Note</span><br>
-                    <input class="shadow-[0_0_10px_rgba(0,0,0,0.2)] rounded-lg p-2 w-full lg:mr-4" type="text" placeholder="Input custom note..." />
+                    <input class="shadow-[0_0_10px_rgba(0,0,0,0.2)] rounded-lg p-2 lg:mr-4 w-full" type="text" placeholder="Input amount here..." />
                 </label>
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl w-1/2 mt-6 lg:my-8 lg:ml-4">Add Item</button>
+                <label class="my-2 w-1/2 ml-4">
+                    <span class="ml-3 text-sm font-medium text-gray-900 font-bold">Amount</span><br>
+                    <input class="shadow-[0_0_10px_rgba(0,0,0,0.2)] rounded-lg p-2 lg:mr-4 w-full" type="text" placeholder="Input amount here..." />
+                </label>
+            </div>
+            <div class="lg:flex">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl w-1/2 mt-6 lg:my-8 lg:mr-4">Add Item</button>
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-xl w-1/2 mt-6 lg:my-8 lg:ml-4">Clear Budget Data</button>
             </div>
         </section>
 
@@ -60,11 +67,6 @@
                 <h2 class="text-center text-2xl">Monthly expenses</h2>
                 <p class="text-center text-4xl pt-4"><span class="text-red-600">↓ </span>-$60.50</p>
             </section>
-        </div>
-
-        <!-- Clear button -->
-        <div class="flex h-auto min-w-sm w-3/4 mx-auto mb-6">
-            <button class="bg-red-500 hover:bg-red-700 text-white font-bold w-full py-2 px-4 rounded-xl max-w-xl mx-auto">Clear Budget Data</button>
         </div>
 
         <!-- Budget table section -->
