@@ -34,12 +34,11 @@ const addTableData = () => {
 // Function that adds value to the current value of localStorage if it already exists
 // This should only be used on amount
 const addValue = (key, value) => {
-    let currentLocalStorageValue = parseFloat(localStorage.getItem(key));
-    currentLocalStorageValue += value;
-    localStorage.setItem(key, toString(currentLocalStorageValue));
+    // code
 }
 
 // Function that subtracts value from the current value of localStorage if it already exists
+// This should only be used on amount
 const subtractValue = (key, value) => {
     // code
 }
@@ -65,7 +64,7 @@ const setBudgetItemData = () => {
         "amount": budgetItem.amount,
         "note": budgetItem.note
     });
-    
+
     localStorage.setItem(localStorage.length, budgetItemObjectString);
 
     addTableData();
