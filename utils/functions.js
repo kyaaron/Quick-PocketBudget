@@ -16,6 +16,17 @@ const clearLocalStorage = () => {
     updateUI();
 }
 
+const addTableData = () => {
+    document.querySelector("#table-body").innerHTML += `
+    <tr>
+        <td>2/5/2026</td>
+        <td>${document.querySelector("#budget-type-selector").value}</td>
+        <td>${document.querySelector("#note-input").value}</td>
+        <td class="text-right">${document.querySelector("#amount-input").value}</td>
+    </tr>
+    `;
+}
+
 const setBudgetItemData = () => {
     const incomeBudgetToggleValue = document.querySelector("#income-budget-toggle").checked;
     const budgetTypeSelector = document.querySelector("#budget-type-selector").value;
@@ -29,6 +40,7 @@ const setBudgetItemData = () => {
     localStorage.setItem("amount", budgetItem.amount);
     localStorage.setItem("note", budgetItem.note);
 
+    addTableData();
     clearFields();
     updateUI();
 }

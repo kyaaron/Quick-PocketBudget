@@ -32,9 +32,9 @@
                     <span class="ml-3 text-sm font-medium text-gray-900 font-bold">Category</span><br>
                     <select id="budget-type-selector" class="shadow-[0_0_10px_rgba(0,0,0,0.2)] p-2 rounded-lg">
                         <option value="">--select--</option>
-                        <option value="mortgage/rent">Mortgage/Rent</option>
-                        <option value="groceries">Groceries</option>
-                        <option value="food">Food</option>
+                        <option value="Mortgage/Rent">Mortgage/Rent</option>
+                        <option value="Groceries">Groceries</option>
+                        <option value="Food">Food</option>
                     </select>
                 </label>
             </div>
@@ -77,31 +77,12 @@
                 <thead>
                     <tr>
                         <th scope="col" class="w-2/5 text-left">Itemized item</th>
-                        <th scope="col" class="w-1/3 text-left"></th>
-                        <th scope="col" class="w-1/3 text-left"></th>
+                        <th scope="col" class="w-1/3 text-left">Category</th>
+                        <th scope="col" class="w-1/3 text-left">Notes</th>
                         <th scope="col" class="w-2/4 text-right">Amount</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>10/20/2025</td>
-                        <td>Income</td>
-                        <td>Salary</td>
-                        <td class="text-right">$3000.00</td>
-                    </tr>
-                    <tr>
-                        <td>10/22/2025</td>
-                        <td>Expense</td>
-                        <td>Food</td>
-                        <td class="text-right">$230.00</td>
-                    </tr>
-                    <tr>
-                        <td>10/20/2025</td>
-                        <td>Expense</td>
-                        <td>Rent</td>
-                        <td class="text-right">$1600.00</td>
-                    </tr>
-                </tbody>
+                <tbody id="table-body"></tbody>
             </table>
         </section>
     </main>
