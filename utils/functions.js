@@ -3,13 +3,15 @@ import  BudgetItem  from "../classes/BudgetItem.js"
 const addItemButton = document.querySelector("#add-item-button");
 const deleteDataButton = document.querySelector("#delete-data-button");
 
+// Function that clears the fields of the form
 const clearFields = () => {
     document.querySelector("#income-budget-toggle").unchecked;
-    document.querySelector("#budget-type-selector").value = "";
+    document.querySelector("#category-selector").value = "";
     document.querySelector("#amount-input").value = "";
     document.querySelector("#note-input").value = "";
 }
 
+// Function that clears out localStorage and also clears out table values
 const clearLocalStorage = () => {
     clearFields();
     localStorage.clear();
@@ -17,24 +19,35 @@ const clearLocalStorage = () => {
     updateUI();
 }
 
+// Function that adds a row of data to the budget items table
 const addTableData = () => {
     document.querySelector("#table-body").innerHTML += `
     <tr>
         <td>2/5/2026</td>
-        <td>${document.querySelector("#budget-type-selector").value}</td>
+        <td>${document.querySelector("#category-selector").value}</td>
         <td>${document.querySelector("#note-input").value}</td>
         <td class="text-right">${document.querySelector("#amount-input").value}</td>
     </tr>
     `;
 }
 
+// Function that adds value to the current value of localStorage if it already exists
+const addValue = (key, value) => {
+    // code
+}
+
+// Function that subtracts value from the current value of localStorage if it already exists
+const subtractValue = (key, value) => {
+    // code
+}
+
 const setBudgetItemData = () => {
     const incomeBudgetToggleValue = document.querySelector("#income-budget-toggle").checked;
-    const budgetTypeSelector = document.querySelector("#budget-type-selector").value;
+    const categorySelectorValue = document.querySelector("#category-selector").value;
     const amountInputValue = document.querySelector("#amount-input").value;
     const noteInputValue = document.querySelector("#note-input").value;
     
-    const budgetItem = new BudgetItem(incomeBudgetToggleValue, budgetTypeSelector, noteInputValue, amountInputValue);
+    const budgetItem = new BudgetItem(incomeBudgetToggleValue, categorySelectorValue, noteInputValue, amountInputValue);
 
     localStorage.setItem("isIncome", budgetItem.income);
     localStorage.setItem("category", budgetItem.category);
@@ -46,6 +59,7 @@ const setBudgetItemData = () => {
     updateUI();
 }
 
+// Function that updates the UI. This is called on submit, clear, and document load
 const updateUI = () => {
     const incomeBudgetToggleValue = document.querySelector("#income-budget-toggle").checked;
 
