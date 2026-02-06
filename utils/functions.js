@@ -19,15 +19,32 @@ const clearLocalStorage = () => {
     updateUI();
 }
 
+// Load table data on page load in entirety
+const loadTableData = () => {
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+        const key = localStorage.key(i);
+        const budgetItemLSObject = JSON.parse(localStorage.getItem(key));
+
+        document.querySelector("#table-body").innerHTML += `
+        <tr>
+            <td>2/5/2026</td>
+            <td>${budgetItemLSObject["category"]}</td>
+            <td>${budgetItemLSObject["note"]}</td>
+            <td class="text-right">${budgetItemLSObject["amount"]}</td>
+        </tr>
+        `;
+    }
+}
+
 // Function that adds a row of data to the budget items table
 const addTableData = () => {
     document.querySelector("#table-body").innerHTML += `
-    <tr>
-        <td>2/5/2026</td>
-        <td>${document.querySelector("#category-selector").value}</td>
-        <td>${document.querySelector("#note-input").value}</td>
-        <td class="text-right">${document.querySelector("#amount-input").value}</td>
-    </tr>
+        <tr>
+            <td>2/5/2026</td>
+            <td>${document.querySelector("#category-selector").value}</td>
+            <td>${document.querySelector("#note-input").value}</td>
+            <td class="text-right">${document.querySelector("#amount-input").value}</td>
+        </tr>
     `;
 }
 
@@ -51,13 +68,7 @@ const setBudgetItemData = () => {
     const noteInputValue = document.querySelector("#note-input").value;
     
     const budgetItem = new BudgetItem(incomeBudgetToggleValue, categorySelectorValue, noteInputValue, amountInputValue);
-
-    /*
-    localStorage.getItem("amount") ? addValue("amount", amountInputValue) : localStorage.setItem("amount", budgetItem.amount);
-    localStorage.setItem("isIncome", budgetItem.income);
-    localStorage.setItem("category", budgetItem.category);
-    localStorage.setItem("note", budgetItem.note);
-    */
+    
     const budgetItemObjectString = JSON.stringify({
         "isIncome": budgetItem.income,
         "category": budgetItem.category,
@@ -87,6 +98,9 @@ const updateUI = () => {
     }
 }
 
-document.addEventListener('DOMContentLoaded', updateUI);
+document.addEventListener('DOMContentLoaded', () => {
+    loadTableData();
+    updateUI();
+});
 addItemButton.addEventListener("click", setBudgetItemData);
 deleteDataButton.addEventListener("click", clearLocalStorage);
