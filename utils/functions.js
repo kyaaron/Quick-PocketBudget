@@ -3,9 +3,14 @@ import  BudgetItem  from "../classes/BudgetItem.js"
 const addItemButton = document.querySelector("#add-item-button");
 const deleteDataButton = document.querySelector("#delete-data-button");
 
+// Initializing dashboard variables. Will be 0 if not in localStorage.
+let incomeDollarValue = parseFloat(localStorage.getItem("totalIncome")) || 0;
+let expenseDollarValue = parseFloat(localStorage.getItem("totalExpense")) || 0;
+let totalValue = incomeDollarValue - expenseDollarValue;
+
 // Function that clears the fields of the form
 const clearFields = () => {
-    document.querySelector("#income-budget-toggle").unchecked;
+    document.querySelector("#income-budget-toggle").checked = false;
     document.querySelector("#category-selector").value = "";
     document.querySelector("#amount-input").value = "";
     document.querySelector("#note-input").value = "";
@@ -16,31 +21,58 @@ const clearLocalStorage = () => {
     clearFields();
     localStorage.clear();
     document.querySelector("#table-body").innerHTML = "";  // needed to be here to properly clear the table only when button is clicked
+    incomeDollarValue = 0;
+    expenseDollarValue = 0;
+    totalValue = 0;
     updateUI();
+}
+
+// Load table data on page load in entirety
+const loadTableData = () => {
+    const tableBody = document.querySelector("#table-body");
+    tableBody.innerHTML = "";
+    const todayDate = new Date();
+
+
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+        const key = localStorage.key(i);
+        if (["totalIncome", "totalExpense", "grandTotal"].includes(key)) continue;
+
+        const budgetItemLSObject = JSON.parse(localStorage.getItem(key));
+
+        document.querySelector("#table-body").innerHTML += `
+        <tr>
+            <td class="w-2/5 text-left">${todayDate.getMonth() + 1}/${todayDate.getDate()}/${todayDate.getFullYear()}</td>
+            <td class="w-1/5 text-left">${budgetItemLSObject.category}</td>
+            <td class="w-2/5 text-left">${budgetItemLSObject.note}</td>
+            <td class="w-2/5 text-right ${budgetItemLSObject.isIncome ? 'text-green-600' : 'text-red-600'}">${budgetItemLSObject.isIncome ? '+' : '-'}$${parseFloat(budgetItemLSObject.amount).toFixed(2)}</td>
+            </tr>
+        `;
+    }
 }
 
 // Function that adds a row of data to the budget items table
 const addTableData = () => {
+    const todayDate = new Date();
     document.querySelector("#table-body").innerHTML += `
-    <tr>
-        <td>2/5/2026</td>
-        <td>${document.querySelector("#category-selector").value}</td>
-        <td>${document.querySelector("#note-input").value}</td>
-        <td class="text-right">${document.querySelector("#amount-input").value}</td>
-    </tr>
+        <tr>
+            <td class="w-2/5 text-left">${todayDate.getMonth() + 1}/${todayDate.getDate()}/${todayDate.getFullYear()}</td>
+            <td class="w-1/5 text-left">${document.querySelector("#category-selector").value}</td>
+            <td class="w-2/5 text-left">${document.querySelector("#note-input").value}</td>
+            <td class="w-2/5 text-right ${document.querySelector("#income-budget-toggle").checked ? 'text-green-600' : 'text-red-600'}">${document.querySelector("#amount-input").value}</td>
+        </tr>
     `;
 }
 
-// Function that adds value to the current value of localStorage if it already exists
-// This should only be used on amount
-const addValue = (key, value) => {
-    // code
-}
-
-// Function that subtracts value from the current value of localStorage if it already exists
-// This should only be used on amount
-const subtractValue = (key, value) => {
-    // code
+// Function that adds amount to income or expenses
+const addValueToDashboard = (obj, value) => {
+    const floatValue = parseFloat(value);
+    if (obj.income === true) { incomeDollarValue += floatValue; }
+    if (obj.income === false) { expenseDollarValue += floatValue; }
+    totalValue = incomeDollarValue - expenseDollarValue;
+    localStorage.setItem("totalIncome", incomeDollarValue);
+    localStorage.setItem("totalExpense", expenseDollarValue);
+    localStorage.setItem("grandTotal", totalValue);
 }
 
 // Function that gets value from inputs, creates a budgetItem object, and updates localStorage with object data, then updates the DOM
@@ -50,43 +82,37 @@ const setBudgetItemData = () => {
     const amountInputValue = document.querySelector("#amount-input").value;
     const noteInputValue = document.querySelector("#note-input").value;
     
-    const budgetItem = new BudgetItem(incomeBudgetToggleValue, categorySelectorValue, noteInputValue, amountInputValue);
+    if (!categorySelectorValue || !amountInputValue || !noteInputValue) {
+        alert("You need to fill in all the budget data. Please check your data.");
+    } else {
+        const budgetItem = new BudgetItem(incomeBudgetToggleValue, categorySelectorValue, noteInputValue, amountInputValue);
+    
+        const budgetItemObjectString = JSON.stringify({
+            "isIncome": budgetItem.income,
+            "category": budgetItem.category,
+            "amount": budgetItem.amount,
+            "note": budgetItem.note
+        });
 
-    /*
-    localStorage.getItem("amount") ? addValue("amount", amountInputValue) : localStorage.setItem("amount", budgetItem.amount);
-    localStorage.setItem("isIncome", budgetItem.income);
-    localStorage.setItem("category", budgetItem.category);
-    localStorage.setItem("note", budgetItem.note);
-    */
-    const budgetItemObjectString = JSON.stringify({
-        "isIncome": budgetItem.income,
-        "category": budgetItem.category,
-        "amount": budgetItem.amount,
-        "note": budgetItem.note
-    });
+        localStorage.setItem(localStorage.length, budgetItemObjectString);
 
-    localStorage.setItem(localStorage.length, budgetItemObjectString);
-
-    addTableData();
-    clearFields();
-    updateUI();
+        addValueToDashboard(budgetItem, amountInputValue);
+        addTableData();
+        clearFields();
+        updateUI();
+    }
 }
 
 // Function that updates the UI. This is called on submit, clear, and document load
 const updateUI = () => {
-    const incomeBudgetToggleValue = document.querySelector("#income-budget-toggle").checked;
-
-    document.querySelector("#income-box").innerText = `$${incomeBudgetToggleValue ? localStorage.getItem("amount") : "0.00"}`;
-    document.querySelector("#expenses-box").innerText = `$${!incomeBudgetToggleValue ? localStorage.getItem("amount") : "0.00"}`;
-    document.querySelector("#total-budget").innerText = `$${localStorage.getItem("amount")}`;
-
-    if (!localStorage.getItem("amount")) {
-        document.querySelector("#income-box").innerText = `$0.00`;
-        document.querySelector("#expenses-box").innerText = `$0.00`;
-        document.querySelector("#total-budget").innerText = `$0.00`;
-    }
+    document.querySelector("#income-box").innerText = `$${incomeDollarValue.toFixed(2)}`;
+    document.querySelector("#expenses-box").innerText = `$${expenseDollarValue.toFixed(2)}`;
+    document.querySelector("#total-budget").innerText = `$${totalValue.toFixed(2)}`;    
 }
 
-document.addEventListener('DOMContentLoaded', updateUI);
+document.addEventListener('DOMContentLoaded', () => {
+    loadTableData();
+    updateUI();
+});
 addItemButton.addEventListener("click", setBudgetItemData);
 deleteDataButton.addEventListener("click", clearLocalStorage);

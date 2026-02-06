@@ -30,7 +30,7 @@
                 </label>
                 <label class="my-2 lg:w-1/2 lg:ml-4">
                     <span class="ml-3 text-sm font-medium text-gray-900 font-bold">Category</span><br>
-                    <select id="category-selector" class="shadow-[0_0_10px_rgba(0,0,0,0.2)] p-2 rounded-lg">
+                    <select id="category-selector" class="shadow-[0_0_10px_rgba(0,0,0,0.2)] p-2 rounded-lg" required>
                         <option value="">--select--</option>
                         <option value="Mortgage/Rent">Mortgage/Rent</option>
                         <option value="Groceries">Groceries</option>
@@ -41,11 +41,11 @@
             <div class="lg:flex">
                 <label class="my-2 w-1/2 mr-4">
                     <span class="ml-3 text-sm font-medium text-gray-900 font-bold">Note</span><br>
-                    <input id="note-input" class="shadow-[0_0_10px_rgba(0,0,0,0.2)] rounded-lg p-2 lg:mr-4 w-full" type="text" placeholder="Input amount here..." />
+                    <input id="note-input" class="shadow-[0_0_10px_rgba(0,0,0,0.2)] rounded-lg p-2 lg:mr-4 w-full" type="text" placeholder="Input amount here..." required/>
                 </label>
                 <label class="my-2 w-1/2 ml-4">
                     <span class="ml-3 text-sm font-medium text-gray-900 font-bold">Amount</span><br>
-                    <input id="amount-input" class="shadow-[0_0_10px_rgba(0,0,0,0.2)] rounded-lg p-2 lg:mr-4 w-full" type="text" placeholder="Input amount here..." />
+                    <input id="amount-input" class="shadow-[0_0_10px_rgba(0,0,0,0.2)] rounded-lg p-2 lg:mr-4 w-full" type="text" placeholder="Input amount here..." required/>
                 </label>
             </div>
             <div class="lg:flex">
@@ -77,9 +77,9 @@
                 <thead>
                     <tr>
                         <th scope="col" class="w-2/5 text-left">Itemized item</th>
-                        <th scope="col" class="w-1/3 text-left">Category</th>
-                        <th scope="col" class="w-1/3 text-left">Notes</th>
-                        <th scope="col" class="w-2/4 text-right">Amount</th>
+                        <th scope="col" class="w-1/5 text-left">Category</th>
+                        <th scope="col" class="w-2/5 text-left">Notes</th>
+                        <th scope="col" class="w-2/5 text-right">Amount</th>
                     </tr>
                 </thead>
                 <tbody id="table-body"></tbody>
